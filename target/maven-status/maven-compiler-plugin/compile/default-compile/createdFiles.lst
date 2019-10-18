@@ -1,0 +1,8 @@
+com/springboot/ng/controller/AppController.class
+com/springboot/ng/controller/RestApiController.class
+com/springboot/ng/service/UserServiceImpl.class
+com/springboot/ng/util/CustomErrorType.class
+com/springboot/ng/model/User.class
+com/springboot/ng/SpringBootNGApp.class
+com/springboot/ng/service/UserService.class
+com/springboot/ng/repositories/UserRepository.class

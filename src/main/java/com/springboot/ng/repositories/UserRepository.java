@@ -1,6 +1,6 @@
-package com.websystique.springboot.repositories;
+package com.springboot.ng.repositories;
 
-import com.websystique.springboot.model.User;
+import com.springboot.ng.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

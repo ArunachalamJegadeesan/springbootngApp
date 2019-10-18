@@ -1,7 +1,7 @@
-package com.websystique.springboot.service;
+package com.springboot.ng.service;
 
 
-import com.websystique.springboot.model.User;
+import com.springboot.ng.model.User;
 
 import java.util.List;
 

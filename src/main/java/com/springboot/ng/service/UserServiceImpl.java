@@ -1,9 +1,10 @@
-package com.websystique.springboot.service;
+package com.springboot.ng.service;
 
 import java.util.List;
+import java.util.Optional;
 
-import com.websystique.springboot.model.User;
-import com.websystique.springboot.repositories.UserRepository;
+import com.springboot.ng.model.User;
+import com.springboot.ng.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +19,12 @@ public class UserServiceImpl implements UserService{
 	private UserRepository userRepository;
 
 	public User findById(Long id) {
-		return userRepository.findOne(id);
+		Optional<User> user = userRepository.findById(id);
+		if (user.isPresent()) {
+			return user.get();
+		}
+		else {
+			return null; }
 	}
 
 	public User findByName(String name) {
@@ -34,7 +40,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	public void deleteUserById(Long id){
-		userRepository.delete(id);
+		userRepository.deleteById(id);
 	}
 
 	public void deleteAllUsers(){

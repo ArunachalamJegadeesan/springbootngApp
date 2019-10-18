@@ -1,4 +1,4 @@
-# SpringBootCRUDApplication
+# SpringBootngApp
 
 
 ` Angular application Bootstrapped using SpringBoot  Connecting to database . It uses Spring Profile`
