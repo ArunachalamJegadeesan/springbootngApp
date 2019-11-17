@@ -1,4 +1,4 @@
-package com.springboot.ng;
+package com.springboot.sso.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,27 +7,21 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.*;
-import org.springframework.http.server.ServerHttpRequest;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.security.BasicPermission;
 import java.security.Principal;
-import static org.springframework.http.HttpHeaders.HOST;
+
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 @SpringBootApplication
 @Controller
-public class SpringBootNGApp {
+public class SSOServiceApplication {
 
 
 	static final String FORWARDED_URL = "X-CF-Forwarded-Url";
@@ -46,8 +40,8 @@ public class SpringBootNGApp {
 	@RequestMapping(value="/")
 	public ResponseEntity <?> service (RequestEntity<?> request, Principal principal) throws IOException, URISyntaxException
 	{
-		UsernamePasswordAuthenticationToken permission = (UsernamePasswordAuthenticationToken)principal;
-		logger.info("Prinicipal ->", permission.getDetails());
+		OAuth2AuthenticationToken token = (OAuth2AuthenticationToken)principal;
+		logger.info("Prinicipal ->", token.getPrincipal().getAttributes());
 		logger.info("incoming  Request:  {}", formatRequest(request.getMethod(), request.getUrl(), request.getHeaders()));
 		RequestEntity<?>  outrequest = getForwardRequest(request);
 		logger.info("Outgoing Request:  {}", formatRequest(outrequest.getMethod(), outrequest.getUrl(), outrequest.getHeaders()));
@@ -74,9 +68,9 @@ public class SpringBootNGApp {
 		return new RestTemplate();
 	}
 
-	public static void main(String[] args)
+	 public static void main(String[] args)
 	{
-		SpringApplication.run(SpringBootNGApp.class, args);
+		SpringApplication.run(SSOServiceApplication.class, args);
 	}
 
 

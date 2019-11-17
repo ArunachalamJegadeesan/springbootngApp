@@ -1,0 +1,18 @@
+---
+applications:
+- name: ngapp1
+  memory: 1G
+  instances: 1
+  random-route: false
+  path: target/springbootngApp-1.0.0.jar
+  buildpack: https://github.com/cloudfoundry/java-buildpack.git  
+  services:
+    - myIdentity
+  env:
+     GRANT_TYPE: authorization_code
+     SSO_IDENTITY_PROVIDERS: uaa
+     SSO_SCOPES: openid
+
+
+
+
